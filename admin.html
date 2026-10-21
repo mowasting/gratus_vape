@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>لوحة التحكم | Gratus Vape</title>
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="icon" href="assets/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- تسجيل الدخول -->
+<div class="login" id="loginBox" hidden>
+  <img src="assets/logo.jpg" alt="Gratus Vape">
+  <h1>لوحة التحكم</h1>
+  <form id="loginForm">
+    <div class="field"><label for="lEmail">الايميل</label><input id="lEmail" type="email" autocomplete="username" dir="ltr" style="text-align:right" required></div>
+    <div class="field"><label for="lPass">كلمة المرور</label><input id="lPass" type="password" autocomplete="current-password" dir="ltr" style="text-align:right" required></div>
+    <p class="err" id="lErr" role="alert"></p>
+    <button class="btn gold block" type="submit" id="lBtn">دخول</button>
+  </form>
+</div>
+
+<!-- اللوحة -->
+<div class="adm-wrap" id="app" hidden>
+  <div class="adm-bar">
+    <h1>لوحة التحكم</h1>
+    <button class="btn small" id="soundBtn" type="button" aria-pressed="true">الصوت: يعمل</button>
+    <a class="btn small" href="index.html" target="_blank" rel="noopener">فتح المتجر</a>
+    <button class="btn small" id="logoutBtn" type="button">خروج</button>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-tab="orders" type="button">الطلبات <span class="n" id="newCount" hidden>0</span></button>
+    <button class="tab" data-tab="products" type="button">المنتجات</button>
+    <button class="tab" data-tab="settings" type="button">الإعدادات</button>
+  </div>
+
+  <section id="tab-orders">
+    <div class="chips" id="chips"></div>
+    <div class="orders" id="orders"></div>
+  </section>
+
+  <section id="tab-products" hidden>
+    <div class="toolbar">
+      <span class="hint" id="pCount"></span>
+      <button class="btn gold" id="addProduct" type="button">إضافة منتج</button>
+    </div>
+    <div style="overflow-x:auto"><table class="ptable" id="ptable"></table></div>
+  </section>
+
+  <section id="tab-settings" hidden>
+    <form class="settings-form" id="setForm">
+      <div class="two">
+        <div class="field"><label for="sFee">أجرة التوصيل (د.ع)</label><input id="sFee" type="number" min="0" step="250"></div>
+        <div class="field"><label for="sFree">توصيل مجاني من مبلغ (0 = معطل)</label><input id="sFree" type="number" min="0" step="1000"></div>
+      </div>
+      <div class="field"><label for="sZain">رقم زين كاش لاستلام التحويلات (اتركه فارغاً لإخفاء الخيار)</label><input id="sZain" type="text" dir="ltr" style="text-align:right"></div>
+      <div class="field"><label for="sQi">رقم كي كارد لاستلام التحويلات (اتركه فارغاً لإخفاء الخيار)</label><input id="sQi" type="text" dir="ltr" style="text-align:right"></div>
+      <div class="field"><label for="sPhone">رقم هاتف المحل (يظهر أسفل الموقع)</label><input id="sPhone" type="text" dir="ltr" style="text-align:right"></div>
+      <p class="err" id="setErr" role="alert"></p>
+      <button class="btn gold" type="submit">حفظ الإعدادات</button>
+    </form>
+  </section>
+</div>
+
+<!-- نافذة منتج -->
+<div class="modal" id="pModal" hidden>
+  <div class="dialog narrow" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <button class="icon-btn x" type="button" id="pmClose" aria-label="إغلاق">✕</button>
+    <h2 id="pmTitle">منتج</h2>
+    <form id="pForm">
+      <div class="field"><label for="pName">اسم المنتج</label><input id="pName" type="text" maxlength="120" required></div>
+      <div class="field"><label for="pDesc">الوصف</label><textarea id="pDesc" maxlength="2000" placeholder="المواصفات، النكهة، النيكوتين، المحتويات..."></textarea></div>
+      <div class="two">
+        <div class="field"><label for="pPrice">السعر (د.ع)</label><input id="pPrice" type="number" min="0" step="250" required></div>
+        <div class="field"><label for="pStock">الكمية بالمخزن</label><input id="pStock" type="number" min="0" step="1" required></div>
+      </div>
+      <div class="field"><label for="pCat">التصنيف</label><input id="pCat" type="text" list="catList" maxlength="40" required><datalist id="catList"><option value="أجهزة"><option value="نكهات"><option value="فحمات وملحقات"><option value="إكسسوارات"></datalist></div>
+      <div class="field"><span class="lbl">الصورة</span>
+        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+          <div class="imgprev" id="pPrev"></div>
+          <input id="pFile" type="file" accept="image/*">
+        </div>
+      </div>
+      <label class="check"><input type="checkbox" id="pActive" checked><span>ظاهر في المتجر</span></label>
+      <p class="err" id="pErr" role="alert"></p>
+      <button class="btn gold block" type="submit" id="pSave">حفظ</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="common.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

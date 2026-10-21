@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gratus Vape | أبو الأكبر</title>
+  <meta name="description" content="Gratus Vape أبو الأكبر: أجهزة ونكهات وإكسسوارات فيب مع توصيل لكل المحافظات.">
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="icon" href="assets/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- بوابة العمر -->
+<div class="agegate" id="agegate" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
+  <div id="ageMain">
+    <img src="assets/logo.jpg" alt="Gratus Vape">
+    <h1 id="ageTitle">هل عمرك 18 سنة أو أكثر؟</h1>
+    <p>منتجات هذا المتجر تحتوي على النيكوتين وهي للبالغين فقط.</p>
+    <div class="acts">
+      <button class="btn gold" id="ageYes" type="button">نعم، عمري 18 أو أكثر</button>
+      <button class="btn" id="ageNo" type="button">لا</button>
+    </div>
+  </div>
+  <div id="ageDeny" hidden>
+    <h1>الدخول للبالغين فقط</h1>
+    <p>نعتذر، لا يمكنك تصفح المتجر قبل بلوغ 18 سنة.</p>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#" aria-label="Gratus Vape">
+      <svg viewBox="0 0 60 120" fill="currentColor" aria-hidden="true"><path d="M38 4C24 28 44 44 40 68c-2 14-10 24-18 32 22-6 32-26 28-48C47 32 30 24 38 4Z"/><path d="M14 46C6 62 20 74 16 94c12-12 10-32-2-48Z"/></svg>
+      <b>GRATUS VAPE</b>
+    </a>
+    <nav aria-label="التنقل">
+      <a href="#shop">المنتجات</a>
+      <a href="#info">التوصيل والدفع</a>
+    </nav>
+    <button class="btn cart-btn" id="cartBtn" type="button" aria-controls="drawer">
+      السلة <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="smoke" aria-hidden="true"><i></i><i></i><i></i></div>
+  <img class="hero-logo" src="assets/logo.jpg" alt="Gratus Vape، أبو الأكبر" width="460" height="460">
+  <p class="hero-line">أجهزة ونكهات وإكسسوارات، توصلك لباب البيت.</p>
+  <a class="btn gold" href="#shop">تصفح المنتجات</a>
+</section>
+
+<main class="shop wrap" id="shop">
+  <div class="shop-head">
+    <h2>المنتجات</h2>
+    <div class="tools">
+      <div class="cats" id="cats" role="tablist" aria-label="التصنيفات"></div>
+      <input class="search" id="search" type="search" placeholder="ابحث عن منتج" aria-label="ابحث عن منتج">
+    </div>
+  </div>
+  <div class="grid" id="grid" aria-live="polite">
+    <p class="state-msg">جاري تحميل المنتجات...</p>
+  </div>
+</main>
+
+<section class="info" id="info">
+  <div class="wrap">
+    <h2>التوصيل والدفع</h2>
+    <dl>
+      <div class="row"><dt>التوصيل</dt><dd id="infoDelivery">لكل المحافظات. نتصل بك لتأكيد الطلب قبل الإرسال.</dd></div>
+      <div class="row"><dt>الدفع</dt><dd id="infoPay">الدفع عند الاستلام.</dd></div>
+      <div class="row"><dt>العمر</dt><dd>البيع للبالغين 18 سنة فأكثر فقط، وقد نطلب إثبات العمر عند التسليم.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Gratus Vape، أبو الأكبر</span>
+    <a id="footPhone" href="#" hidden></a>
+  </div>
+</footer>
+
+<!-- السلة -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="سلة التسوق" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>سلة التسوق</h3>
+    <button class="icon-btn" id="closeCart" type="button" aria-label="إغلاق السلة">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="tot"><span>مجموع المنتجات</span><b id="cartSub">0 د.ع</b></div>
+    <p class="hint" id="cartHint"></p>
+    <button class="btn gold block" id="checkoutBtn" type="button">إتمام الطلب</button>
+  </div>
+</aside>
+
+<!-- نافذة المنتج -->
+<div class="modal" id="pModal" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="pName">
+    <button class="icon-btn x" type="button" data-close aria-label="إغلاق">✕</button>
+    <div class="pview" id="pView"></div>
+  </div>
+</div>
+
+<!-- نافذة إتمام الطلب -->
+<div class="modal" id="cModal" hidden>
+  <div class="dialog narrow" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+    <button class="icon-btn x" type="button" data-close aria-label="إغلاق">✕</button>
+    <div id="cFormWrap">
+      <h2 id="cTitle">إتمام الطلب</h2>
+      <form id="cForm" novalidate>
+        <div class="field"><label for="fName">الاسم الكامل</label><input id="fName" type="text" autocomplete="name" maxlength="80" required></div>
+        <div class="field"><label for="fPhone">رقم الهاتف</label><input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07701234567" dir="ltr" style="text-align:right" required></div>
+        <div class="field"><label for="fCity">المحافظة</label>
+          <select id="fCity" required>
+            <option value="">اختر المحافظة</option>
+            <option>بغداد</option><option>البصرة</option><option>نينوى</option><option>أربيل</option>
+            <option>السليمانية</option><option>دهوك</option><option>كركوك</option><option>النجف</option>
+            <option>كربلاء</option><option>بابل</option><option>الأنبار</option><option>ديالى</option>
+            <option>صلاح الدين</option><option>واسط</option><option>ذي قار</option><option>ميسان</option>
+            <option>المثنى</option><option>القادسية</option><option>حلبجة</option>
+          </select>
+        </div>
+        <div class="field"><label for="fAddr">العنوان بالتفصيل</label><textarea id="fAddr" maxlength="300" placeholder="المنطقة، الشارع، أقرب نقطة دالة" required></textarea></div>
+        <div class="field"><label for="fNotes">ملاحظات (اختياري)</label><input id="fNotes" type="text" maxlength="200"></div>
+
+        <div class="field"><span class="lbl">طريقة الدفع</span><div class="pays" id="pays"></div></div>
+        <div class="paybox" id="payBox" hidden></div>
+        <div class="field" id="refField" hidden><label for="fRef">رقم عملية التحويل</label><input id="fRef" type="text" maxlength="60" dir="ltr" style="text-align:right"></div>
+
+        <div class="sum" id="sum"></div>
+        <label class="check"><input type="checkbox" id="fAge"><span>أؤكد أن عمري 18 سنة أو أكثر.</span></label>
+        <p class="err" id="cErr" role="alert"></p>
+        <button class="btn gold block" id="sendBtn" type="submit">تأكيد الطلب</button>
+      </form>
+    </div>
+    <div class="done" id="cDone" hidden></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
